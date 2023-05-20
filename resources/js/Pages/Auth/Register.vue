@@ -5,10 +5,15 @@ import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { reactive } from 'vue';
+import { Inertia } from '@inertiajs/inertia';
 
 const form = useForm({
     name: '',
     email: '',
+    userName: '',
+    // icon: null,
+    profile: '',
     password: '',
     password_confirmation: '',
     terms: false,
@@ -19,6 +24,11 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+// const submit = () => {
+//     Inertia.post('/register',form)
+//     onFinish: () => form.reset('password', 'password_confirmation'),
+// }
 </script>
 
 <template>
@@ -29,22 +39,37 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <BreezeLabel for="name" value="Name" />
+                <BreezeLabel for="name" value="名前" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
+                <BreezeLabel for="userName" value="ユーザーネーム" />
+                <BreezeInput id="userName" type="text" pattern="^[0-9a-zA-Z]+$" class="mt-1 block w-full" v-model="form.userName" required autofocus />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password" value="Password" />
+                <BreezeLabel for="email" value="メールアドレス" />
+                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
+            </div>
+
+            <!-- <div class="mt-4">
+                <BreezeLabel for="icon" value="アイコン写真" />
+                <BreezeInput id="icon" type="file" enctype="multipart/form-data" accept="image/png,image/jpeg,image/jpg" class="mt-1 block w-full" v-model="form.icon" required />
+            </div> -->
+
+            <div class="mt-4">
+                <BreezeLabel for="profile" value="プロフィール文" />
+                <BreezeInput id="profile" type="text" class="mt-1 block w-full" v-model="form.profile" autocomplete="profile" />
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="password" value="パスワード" />
                 <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password_confirmation" value="Confirm Password" />
+                <BreezeLabel for="password_confirmation" value="パスワードの確認" />
                 <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
             </div>
 
