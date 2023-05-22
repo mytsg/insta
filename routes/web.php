@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/users',UserController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('/posts',PostController::class)
 ->middleware(['auth', 'verified']);
 
 Route::get('/myprofile',[UserController::class,'myProfile'])
