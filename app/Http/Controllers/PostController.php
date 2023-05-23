@@ -21,6 +21,7 @@ class PostController extends Controller
     public function index()
     {
         $allPosts = Post::with('user')
+                    ->with('comments')
                     // ->select('id','created_at','filename','content')
                     ->orderBy('created_at', 'desc')
                     ->get();

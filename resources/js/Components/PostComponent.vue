@@ -1,7 +1,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import { onMounted, reactive, ref, computed } from 'vue'
+import { onMounted, reactive, ref, computed, nextTick } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import Micromodal from '@/Components/MicroModal.vue'
@@ -10,7 +10,14 @@ const props = defineProps({
     'posts': Array,
 })
 
+// const child = ref(true);
+// const toggle = () => {
+//     child.value = false
+//     nextTick(() => (child.value = true))
+// }
+
 console.log('posts',props.posts)
+console.log('props.posts[0].comments', props.posts[0].comments)
 
 </script>
 
@@ -43,7 +50,7 @@ console.log('posts',props.posts)
                     </div>
                     <h2 class="title-font font-bold text-black text-xl">「いいね！」○○件</h2>
                     <p class="w-full my-4 leading-relaxed text-black">{{ post.content }}</p>
-                    <Micromodal :post="post" />
+                    <Micromodal :post="post" :comments="post.comments"/>
                 </div>
             </div>
         </div>

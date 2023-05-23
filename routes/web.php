@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,10 @@ Route::resource('/posts',PostController::class)
 
 Route::get('/myprofile',[UserController::class,'myProfile'])
 ->middleware(['auth'])->name('myprofile');
+
+Route::resource('/comments',CommentController::class)
+->middleware(['auth', 'verified']);
+
+// Route::get('')
 
 require __DIR__.'/auth.php';

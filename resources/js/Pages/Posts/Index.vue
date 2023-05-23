@@ -1,7 +1,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import { onMounted, reactive, ref, computed } from 'vue'
+import { onMounted, reactive, ref, computed, watch } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import PostComponent from '@/Components/PostComponent.vue';
@@ -54,7 +54,7 @@ console.log('index posts', props.posts[0].user)
                         </a>
                     </div>
                 </div> -->
-                <PostComponent :posts=props.posts />
+                <PostComponent :key="reload" :posts=props.posts />
                 <div class="text-center w-1/3">
                     <p>ああああああ</p>
                 </div>
