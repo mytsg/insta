@@ -1,8 +1,17 @@
 <script setup>
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { onMounted, reactive, ref, computed, watch } from 'vue'
+import axios from 'axios';
+
+const isShow = ref(false)
+const toggleStatus = () => {
+    isShow.value = !isShow.value
+}
+
 </script>
 
 <template>
-    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+    <div v-show="isShow" class="modal" id="modal-1" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
             <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                 <header class="modal__header">
@@ -23,4 +32,5 @@
             </div>
         </div>
     </div>
+    <button @click="toggleStatus" type="button" data-micromodal-trigger="modal-1" href='javascript:;'>詳細を見る</button>
 </template>

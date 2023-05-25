@@ -43,6 +43,7 @@ Route::get('/myprofile',[UserController::class,'myProfile'])
 Route::resource('/comments',CommentController::class)
 ->middleware(['auth', 'verified']);
 
-// Route::get('')
+Route::get('posts/comments/{postId}',[CommentController::class,'getComments'])->name('posts.comments')
+->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentCreated;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -51,6 +53,22 @@ class CommentController extends Controller
             'userName' => $user->userName,
             'user_icon' => $user->icon,
         ]);
+
+        event(new CommentCreated($comment));
+
+        return $comment;
+    }
+
+    public function getComments($postId)
+    {
+        // \Log::debug('postid', $postId);
+        // $userId = $request->userId;
+        // $postId =  $request->postId;
+
+        $comments = Comment::where('post_id', $postId)
+                    ->get();
+                    
+        return $comments;
     }
 
     /**

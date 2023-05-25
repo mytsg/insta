@@ -4,7 +4,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import { onMounted, reactive, ref, computed, nextTick } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import Micromodal from '@/Components/MicroModal.vue'
+import MicroModal from '@/Components/MicroModal.vue'
 
 const props = defineProps({
     'posts': Array,
@@ -50,7 +50,7 @@ console.log('props.posts[0].comments', props.posts[0].comments)
                     </div>
                     <h2 class="title-font font-bold text-black text-xl">「いいね！」○○件</h2>
                     <p class="w-full my-4 leading-relaxed text-black">{{ post.content }}</p>
-                    <Micromodal :post="post" :comments="post.comments"/>
+                    <MicroModal :post="post" :comments="post.comments"/>
                 </div>
             </div>
         </div>

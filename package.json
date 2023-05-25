@@ -20,6 +20,8 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "micromodal": "^0.4.10"
+        "laravel-echo": "^1.15.1",
+        "micromodal": "^0.4.10",
+        "pusher-js": "^8.0.2"
     }
 }
