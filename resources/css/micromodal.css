@@ -51,11 +51,11 @@ border: 0;
 
 .modal__header .modal__close:before { content: "\2715"; }
 
-.modal__footer {
+/* .modal__footer {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
+} */
 
 .modal__content {
 margin-top: 2rem;
@@ -109,6 +109,15 @@ color: #fff;
 .form {
     position: absolute;
     bottom: 0; /* 基準の位置を画面の一番下に指定する */
+}
+
+/* .buttons-parent {
+    position: relative;
+} */
+
+.buttons {
+    position: absolute;
+    bottom: 45px;
 }
 
 /**************************\

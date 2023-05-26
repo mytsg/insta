@@ -18,7 +18,7 @@ const toggleStatus = () => {
                     <h2 class="modal__title" id="modal-1-title">
                         Micromodal
                     </h2>
-                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                    <button @click="toggleStatus" class="modal__close" aria-label="Close modal" data-micromodal-close></button>
                 </header>
                 <main class="modal__content" id="modal-1-content">
                     <p>
@@ -26,11 +26,11 @@ const toggleStatus = () => {
                     </p>
                 </main>
                 <footer class="modal__footer">
-                    <button class="modal__btn modal__btn-primary">Continue</button>
-                    <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+                    <button @click="toggleStatus" class="modal__btn modal__btn-primary">Continue</button>
+                    <button @click="toggleStatus" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
                 </footer>
             </div>
         </div>
     </div>
-    <button @click="toggleStatus" type="button" data-micromodal-trigger="modal-1" href='javascript:;'>詳細を見る</button>
+    <a @click="toggleStatus"  data-micromodal-trigger="modal-1" href='javascript:;'>Open Modal Dialog</a>
 </template>
