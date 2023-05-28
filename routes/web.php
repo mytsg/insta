@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,12 @@ Route::resource('/comments',CommentController::class)
 ->middleware(['auth', 'verified']);
 
 Route::get('posts/comments/{postId}',[CommentController::class,'getComments'])->name('posts.comments')
+->middleware(['auth', 'verified']);
+
+Route::resource('/messages', MessageController::class)
+->middleware(['auth', 'verified']);
+
+Route::get('/getMessages/{id}',[MessageController::class,'getMessages'])
 ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

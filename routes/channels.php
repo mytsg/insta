@@ -21,3 +21,7 @@ Broadcast::channel('comment', function (){
     return true;
 });
 
+Broadcast::channel('message', function (){
+    return true;
+});
+
