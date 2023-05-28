@@ -19,8 +19,8 @@ const props = defineProps({
         <template #header>
         </template>
 
-        <div class="py-12 w-full">
-            <div class="max-w-7xl mx-auto flex w-10/12 text-center">
+        <div class="py-12 w-full h-full">
+            <div class="max-w-7xl mx-auto flex w-10/12 text-center h-full">
                 <MessageList :users="props.users"/>
                 <div class="w-full rounded border-gray-200 border-2 text-center items-center flex flex-col">
                     <div class="h-full items-center flex">
