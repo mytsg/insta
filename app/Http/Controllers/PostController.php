@@ -22,16 +22,18 @@ class PostController extends Controller
     {
         $allPosts = Post::with('user')
                     ->with('comments')
+                    ->with('likes')
                     // ->select('id','created_at','filename','content')
                     ->orderBy('created_at', 'desc')
                     ->get();
 
-        // dd($allPosts);
-        
+        $authUser = User::findOrFail(Auth::id());
+
         // ここにフォロー中のユーザーの投稿のみを表示する処理(filterを使う)
 
         return Inertia::render('Posts/Index',[
             'posts' => $allPosts,
+            'authUser' => $authUser,
         ]);
     }
 

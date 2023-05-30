@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,9 @@ Route::resource('/messages', MessageController::class)
 
 Route::get('/getMessages/{id}',[MessageController::class,'getMessages'])
 ->middleware(['auth', 'verified']);
+
+Route::get('/posts/{post}/check', [LikeController::class,'check'])->name('like.check');
+
+Route::post('posts/{post}/likes', [LikeController::class,'store']);
 
 require __DIR__.'/auth.php';

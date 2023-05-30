@@ -31,20 +31,16 @@ const getComments = async () => {
         await axios.get(`posts/comments/${props.post.id}`)
         .then(res => {
         comments.value = res.data
-        console.log('Object.keys(comments.value).length', Object.keys(comments.value).length) //comments.valueはObject
+        // console.log('Object.keys(comments.value).length', Object.keys(comments.value).length) //comments.valueはObject
         commentsList.value = comments.value.slice(countStart.value, countEnd.value)
         allCommentsNum.value = Object.keys(comments.value).length
         if(allCommentsNum.value - countEnd.value >= 0) {
             isShowNextButton.value = true
-            console.log('true', allCommentsNum.value - countEnd.value)
         } else {
             isShowNextButton.value = false
-            console.log('else', allCommentsNum.value - countEnd.value)
         }
 
-        console.log('allCommentsNum',allCommentsNum.value)
-        console.log('allCommentsNum.value - countEnd.value', allCommentsNum.value - countEnd.value)
-        console.log('getCommentsしました') })
+    })
     } catch(e) {
         console.log(e)
     }
@@ -64,11 +60,6 @@ const isMore = async() => {
     } else {
         console.log('countStart ismess f',countStart.value)
     }
-
-    console.log('comments.value',comments.value)
-    console.log('commentsList.value',commentsList.value)
-    console.log('countstart.value',countStart.value)
-    console.log('countend.value',countEnd.value)
 }
 
 const isLess = async() => {
