@@ -61,4 +61,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    public function follows()   // フォローしているUserを返す
+    {
+        return $this->belongsToMany(self::class,'follows','following_user_id','followed_user_id')
+        ->withPivot('followed_user_id');
+    }
+
+    public function isFollowing($followedUserId)
+    {
+        
+        if($this->follows->contains('id',$followedUserId)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function scopeSearchUsers($query, $search = null)
+    {
+        if(!empty($search)){
+            return $query->where('name','like',"%".$search."%")
+            ->orWhere('userName','like',"%".$search."%");
+        } else {
+            return $query;
+        }
+    }
 }

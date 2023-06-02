@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Follow;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use InterventionImage;
@@ -16,9 +17,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Users/Index');
+        $users = User::searchUsers($request->search)
+                ->where('id','<>',Auth::id())
+                ->get();
+
+
+        $authUser = User::findOrFail(Auth::id());
+        $followingUsers = $authUser->follows;   // AuthがフォローしているUserを全件取得
+
+        return Inertia::render('Users/Index',[
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -50,7 +61,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return Inertia::render('Users/Show',[
+            'user' => $user
+        ]);
     }
 
     public function myProfile()
@@ -89,11 +104,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->icon);
-
         $imageFile = $request->icon;
-
-        // dd($imageFile);
 
         if(!is_null($imageFile) && $imageFile->isValid()){
             $fileName = uniqid(rand().'_');
@@ -101,16 +112,9 @@ class UserController extends Controller
             $fileNameToStore = $fileName.'.'.$extension;
             $resizedImage = InterventionImage::make($imageFile)->resize(1920,1920)->encode();
 
-            // dd($fileNameToStore);
 
             Storage::put('public/icons/'.$fileNameToStore, $resizedImage);
         }
-
-        // dd($fileNameToStore, $resizedImage);
-
-        // $user = User::findOrFail($id)
-        //         ->select('id','name','userName','email','icon','profile')
-        //         ->get();
 
         $user = User::findOrFail($id);
 

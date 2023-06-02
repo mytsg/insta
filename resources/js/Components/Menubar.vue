@@ -11,8 +11,8 @@ import { Link } from '@inertiajs/inertia-vue3';
 
 <template>
     <div class="h-full bg-white border-r-4 border-gray-200 w-1/6">
-        <Link :herf="route('posts.index')" :active="route().current('posts.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">ホーム</Link>
-        <Link class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">検索</Link>
+        <Link :herf="route('posts.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">ホーム</Link>
+        <Link :href="route('users.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">検索</Link>
         <Link :href="route('messages.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">メッセージ</Link>
         <Link :href="route('posts.create')" :active="route().current('posts.create')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">作成</Link>
         <Link :href="route('myprofile')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">プロフィール</Link>

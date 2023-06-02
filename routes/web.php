@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\LikeController;
 
@@ -57,5 +58,11 @@ Route::get('/getMessages/{id}',[MessageController::class,'getMessages'])
 Route::get('/posts/{post}/check', [LikeController::class,'check'])->name('like.check');
 
 Route::post('posts/{post}/likes', [LikeController::class,'store']);
+
+Route::post('/follow/{userId}',[FollowController::class,'store']);
+
+Route::post('/follow/{userId}/destroy',[FollowController::class,'destroy']);
+
+Route::get('/follow/{userId}/check',[FollowController::class,'check']);
 
 require __DIR__.'/auth.php';

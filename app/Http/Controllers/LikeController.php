@@ -29,12 +29,11 @@ class LikeController extends Controller
 
     public function check(Request $request)
     {
-        \Log::debug('チェックします',([$request->post]));
         $post = Post::findOrFail($request->post);
         if($post->isLiked(Auth::id())){
-            return 1;
+            return true;
         } else {
-            return 2;
+            return false;
         }
     }
 }
