@@ -16,7 +16,6 @@ import { Link } from '@inertiajs/inertia-vue3';
         <Link :href="route('messages.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">メッセージ</Link>
         <Link :href="route('posts.create')" :active="route().current('posts.create')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">作成</Link>
         <Link :href="route('myprofile')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">プロフィール</Link>
-        <!-- <Link class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">ログアウト</Link> -->
         <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">
             Log Out
         </BreezeResponsiveNavLink>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Follow;
+use App\Models\Post;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use InterventionImage;
@@ -29,6 +30,7 @@ class UserController extends Controller
 
         return Inertia::render('Users/Index',[
             'users' => $users,
+            'authUser' => User::findOrFail(Auth::id()),
         ]);
     }
 
@@ -62,9 +64,21 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $posts = Post::with('comments')
+                ->with('user')
+                ->where('user_id',$id)
+                ->get();
+        $following = Follow::where('following_user_id',$id)
+                    ->count();
+        $follower = Follow::where('followed_user_id',$id)
+                ->count();
 
         return Inertia::render('Users/Show',[
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts,
+            'amount' => $posts->count(),
+            'following' => $following,
+            'follower' => $follower
         ]);
     }
 
@@ -72,8 +86,22 @@ class UserController extends Controller
     {
         $id = Auth::id();
         $user = User::findOrFail($id);
+
+        $posts = Post::with('user')
+                ->with('comments')
+                ->where('user_id',$id)
+                ->get();
+        $following = Follow::where('following_user_id',$id)
+                ->count();
+        $follower = Follow::where('followed_user_id',$id)
+                ->count();
+    
         return Inertia::render('Users/MyProfile',[
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts,
+            'amount' => $posts->count(),
+            'following' => $following,
+            'follower' => $follower
         ]);
     }
 

@@ -13,9 +13,8 @@ class LikeController extends Controller
     {
         $post = Post::findOrFail($request->post);
         $user = Auth::user();
-        if($post->isLiked(Auth::id())) {  // ログインユーザーが既にいいねしておるかチェック
+        if($post->isLiked(Auth::id())) {  // ログインユーザーが既にいいねしているかチェック
             // 対象のレコードを取得して削除する
-            \Log::debug('いいね取り消し');
             $deleteRecord = $post->getLike($user->id);
             $deleteRecord->delete();
         } else {
@@ -23,8 +22,12 @@ class LikeController extends Controller
                 'user_id' => Auth::id(),
                 'post_id' => $post->id,
             ]);
-            \Log::debug('いいね保存',([$like]));
         }
+
+        $likesAmount = Like::where('post_id',$request->post)
+                        ->count();
+
+        return $likesAmount;
     }
 
     public function check(Request $request)

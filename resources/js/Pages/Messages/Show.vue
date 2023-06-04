@@ -13,8 +13,6 @@ const props = defineProps({
     'users': Array,
 })
 
-console.log('props.authUser.id',props.authUser.id)
-
 const form = useForm({
     'message': '',
     'send_id': props.authUser.id,
@@ -26,9 +24,7 @@ const messages = reactive({})
 const getMessages = async() => {
     await axios.get(`/getMessages/${props.opponent.id}`)
     .then(res => {
-        console.log('res.data', res.data)
         messages.value = res.data
-        console.log('messages.value',messages.value[3].send_id)
     })
 }
 
@@ -103,19 +99,6 @@ const classes = computed(() => message.send_id === props.opponent.id
                             </template>
                         </div>
                     </div>
-                    
-                    
-                    
-                    <!-- <div class="form w-full mt-10">
-                        <form @submit.prevent="send">
-                            <div class="flex">
-                                <textarea class="h-12 border-2 border-gray-400 w-10/12" v-model="form.message"></textarea>
-                                <div class="w-2/10 flex text-center items-center">
-                                    <button class="inline-block bg-gray-300 py-3 md:px-1 lg:px-6 w-full">送信する</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
                 </div>
             </div>
         </div>

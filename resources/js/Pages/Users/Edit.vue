@@ -20,42 +20,14 @@ const form = useForm({
 })
 
 const submitForm = id => {
-    console.log('submit')
-    console.log('form', form)
     form.post(route('users.update',{ user: id }), form)
 }
 
 const selectedFile = (e) => {
-    console.log(e)
     console.log('e.target.files.[0].name',e.target.files[0].name)
     form.icon = e.target.files[0]
     console.log('form.icon',form.icon)
 }
-
-// const submitForm = id => {
-//     const config = {
-//         headers: {
-//         'content-type': 'multipart/form-data'
-//         }
-//     };
-
-//     const formData = new FormData();
-
-//     formData.append('name',form.name)
-//     formData.append('userName',form.userName)
-//     formData.append('profile',form.profile)
-//     formData.append('icon',form.icon)
-
-//     console.log('formData',formData)
-
-//     axios.put(`/users/${id}`, formData, config)
-//     .then(res => {
-//         console.log(res)
-//     })
-//     .catch((err) => {
-//         console.log(err)
-//     })
-// }
 
 </script>
 
@@ -77,7 +49,7 @@ const selectedFile = (e) => {
                             <img class="mt-8 rounded-full" :src="'/storage/icons/' + props.user.icon" alt="">
                         </div>
                         <div v-else class="sm:w-40 sm:h-40 sm:mr-10 inline-flex items-center justify-center rounded-full flex-shrink-0">
-                            <img class="mt-8 rounded-full" :src="'images/no_image.png'" alt="">
+                            <img class="mt-8 rounded-full" src='/images/no_image.png' alt="">
                         </div>
                     </div>
                     <div class="w-2/3 sm:pl-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
@@ -104,9 +76,6 @@ const selectedFile = (e) => {
                         </form>                    
                     </div>
                 </div>
-                <!-- <div class="text-center mt-16">
-                    <button type="button" class="rounded py-4 px-8 bg-blue-300 text-white font-bold">更新する</button>
-                </div> -->
             </div>
         </div>
     </BreezeAuthenticatedLayout>

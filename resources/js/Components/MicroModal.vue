@@ -28,10 +28,9 @@ const isShowBackButton = ref(false)
 
 const getComments = async () => {
     try{
-        await axios.get(`posts/comments/${props.post.id}`)
+        await axios.get(`/posts/comments/${props.post.id}`)
         .then(res => {
         comments.value = res.data
-        // console.log('Object.keys(comments.value).length', Object.keys(comments.value).length) //comments.valueはObject
         commentsList.value = comments.value.slice(countStart.value, countEnd.value)
         allCommentsNum.value = Object.keys(comments.value).length
         if(allCommentsNum.value - countEnd.value >= 0) {
@@ -56,9 +55,6 @@ const isMore = async() => {
 
     if(countStart.value > 0) {
         isShowBackButton.value = true
-        console.log('countStart ismore t',countStart.value)
-    } else {
-        console.log('countStart ismess f',countStart.value)
     }
 }
 
@@ -72,7 +68,6 @@ const isLess = async() => {
     } else {
         isShowBackButton.value = false
     }
-    console.log('countStart isless',countStart.value)
 }
 
 onMounted(() => {

@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 
 const props = defineProps({
     'user': Object,
+    'authUser': Object
 })
 
 const status = ref(false)
@@ -15,12 +16,9 @@ const status = ref(false)
 const isFollowing = async(userId) => {
     await axios.get(`/follow/${userId}/check`)
     .then( res => {
-        console.log('res.data',res.data)
         if(res.data == 1) {
-            console.log('true')
             status.value = true
         } else {
-            console.log('false')
             status.value = false
         }
     }).catch((e) => {
@@ -49,8 +47,8 @@ const follow = async(id) => {
                     <div v-if="props.user.icon" class="w-10 h-10 inline-flex items-center justify-center flex-shrink-0">
                         <img class="rounded-full" :src="'/storage/icons/' + props.user.icon" alt="">
                     </div>
-                    <div v-else class="w-10 h-10 sm:mr-10 inline-flex items-center justify-center rounded-full flex-shrink-0">
-                        <img class="rounded-full" :src="'images/no_image.png'" alt="">
+                    <div v-else class="w-10 h-10 inline-flex items-center justify-center rounded-full flex-shrink-0">
+                        <img class="rounded-full" src='/images/no_image.png' alt="">
                     </div>
                 </div>
                 <div class="px-4 py-2">
@@ -58,8 +56,8 @@ const follow = async(id) => {
                     <h2 class="text-gray-500">{{ props.user.name }}</h2>
                 </div>
             </Link>
-            <button v-if="status" @click.prevent="follow(props.user.id)" class="text-white rounded bg-gray-300 hover:bg-gray-400 w-1/4">フォロー中</button>
-            <button v-else @click.prevent="follow(props.user.id)" class="text-white rounded bg-blue-300 hover:bg-blue-400 w-1/4">フォロー</button>
+            <button v-if="status == true" @click.prevent="follow(props.user.id)" class="text-white rounded bg-gray-300 hover:bg-gray-400 w-1/4">フォロー解除</button>
+            <button v-else-if="status == false && props.user.id != props.authUser.id" @click.prevent="follow(props.user.id)" class="text-white rounded bg-blue-300 hover:bg-blue-400 w-1/4">フォロー</button>
         </div>
     </div>
 </template>

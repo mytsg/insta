@@ -23,7 +23,6 @@ const submitForm = () => {
 const selectedFile = (e) => {
     console.log(e.target.files[0])
     form.filename = e.target.files[0]
-    console.log('filename', filename)
 }
 
 </script>
@@ -47,14 +46,6 @@ const selectedFile = (e) => {
                                 <h1 class="m-2 pr-8 title-font font-bold text-2xl text-blue-500">投稿する写真を選択</h1>
                                 <input class="p-2" type="file" accept="image/png,image/jpeg,image/jpg" @change="selectedFile">
                             </div>
-                            <!-- <div class="w-full mb-4">
-                                <h1 class="m-2 pr-8 title-font font-bold text-2xl">名前</h1>
-                                <input class="p-2 title-font rounded text-xl border-2 border-gray-400" >
-                            </div>
-                            <div class="flex mb-4">
-                                <h1 class="m-2 pr-8 title-font font-bold text-2xl">ユーザーネーム</h1>
-                                <input class="px-2 title-font rounded text-xl border-2 border-gray-400">
-                            </div> -->
                             <div class="mb-4">
                                 <h1 class="m-2 pr-8 title-font font-bold text-2xl">キャプション</h1>
                                 <textarea class="w-full px-2 title-font rounded text-xl border-2 border-gray-400" v-model="form.content"></textarea>
@@ -66,9 +57,6 @@ const selectedFile = (e) => {
                         </form>                    
                     </div>
                 </div>
-                <!-- <div class="text-center mt-16">
-                    <button type="button" class="rounded py-4 px-8 bg-blue-300 text-white font-bold">更新する</button>
-                </div> -->
             </div>
         </div>
     </BreezeAuthenticatedLayout>

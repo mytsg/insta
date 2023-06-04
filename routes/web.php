@@ -65,4 +65,11 @@ Route::post('/follow/{userId}/destroy',[FollowController::class,'destroy']);
 
 Route::get('/follow/{userId}/check',[FollowController::class,'check']);
 
+Route::get('/followingAmount/{userId}',[FollowController::class,'followingAmount']);
+
+Route::get('/followerAmount/{userId}',[FollowController::class,'followerAmount']);
+
+Route::get('/users/followingList/{userId}',[FollowController::class,'getfollowingList']);
+Route::get('/users/followerList/{userId}',[FollowController::class,'getfollowerList']);
+
 require __DIR__.'/auth.php';

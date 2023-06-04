@@ -9,7 +9,8 @@ import axios from 'axios';
 
 const props = defineProps({
     'users': Array,
-    'follows': Array
+    'follows': Array,
+    'authUser': Object,
 })
 
 const search = ref('')
@@ -21,48 +22,6 @@ const searchUsers = () => {
     })
 }
 
-console.log('users',props.users)
-
-// const follow = id => {
-//     axios.post(`/follow/${id}`)
-//     .then( res => {
-//         console.log('follow')
-//     }).catch((e) => {
-//         console.log(e)
-//     })
-// }
-
-// const status = ref(false)
-
-// const isFollowing = async(userId) => {
-//     await axios.get(`/follow/${userId}/check`)
-//     .then( res => {
-//         console.log('res.data',res.data)
-//         if(res.data == 1) {
-//             console.log('true')
-//             status.value = true
-//             // return true
-//         } else {
-//             console.log('false')
-//             status.value = false
-//             // return false
-//         }
-//     }).catch((e) => {
-//         console.log(e)
-//     })
-// }
-
-// // 読み込みと同時にフォローしているかをチェック
-// isFollowing(props.users[0].id)
-
-// const follow = async(id) => {
-//     await axios.post(`/follow/${id}`)
-//     .then( res => {
-//     }).catch((e) => {
-//         console.log(e)
-//     })
-//     isFollowing(id)
-// }
 </script>
 
 <template>
@@ -88,7 +47,7 @@ console.log('users',props.users)
                 </div>
                 <div class="w-full text-center mx-auto" v-for="user in props.users">
                     <div class="text-center mx-auto" :key="user.id">
-                        <UserComponent :user="user" />
+                        <UserComponent :authUser="props.authUser" :user="user" />
                     </div>
                 </div>
             </div>

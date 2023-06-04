@@ -43,8 +43,6 @@ class CommentController extends Controller
     {
         $userId = Auth::id();
         $user = User::findOrFail($userId);
-        // $postId = $request->postId;
-        // $content = $request->content;
 
         $comment = Comment::create([
             'user_id' => $userId,
@@ -61,10 +59,6 @@ class CommentController extends Controller
 
     public function getComments($postId)
     {
-        // \Log::debug('postid', $postId);
-        // $userId = $request->userId;
-        // $postId =  $request->postId;
-
         $comments = Comment::where('post_id', $postId)
                     ->get();
                     

@@ -23,7 +23,6 @@ class PostController extends Controller
         $allPosts = Post::with('user')
                     ->with('comments')
                     ->with('likes')
-                    // ->select('id','created_at','filename','content')
                     ->orderBy('created_at', 'desc')
                     ->get();
 
