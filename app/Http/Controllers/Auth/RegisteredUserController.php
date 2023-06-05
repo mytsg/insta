@@ -47,21 +47,6 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // $imageFile = $request->icon;
-
-        // // dd($imageFile);
-
-        // if($imageFile->isValid()){
-        //     $fileName = uniqid(rend().'_');
-        //     $extension = $imageFile->extension();
-        //     $fileNameToStore = $fileName.'.'.$extension;
-        //     $resizedImage = InterventionImage::make($imageFile)->resize(1920,1920)->encode();
-
-        //     Storage::put('public/shops/'.$fileNameToStore, $resizedImage);
-        // }
-
-        // dd($resizedImage);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

@@ -24,11 +24,6 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
-
-// const submit = () => {
-//     Inertia.post('/register',form)
-//     onFinish: () => form.reset('password', 'password_confirmation'),
-// }
 </script>
 
 <template>
@@ -52,11 +47,6 @@ const submit = () => {
                 <BreezeLabel for="email" value="メールアドレス" />
                 <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
             </div>
-
-            <!-- <div class="mt-4">
-                <BreezeLabel for="icon" value="アイコン写真" />
-                <BreezeInput id="icon" type="file" enctype="multipart/form-data" accept="image/png,image/jpeg,image/jpg" class="mt-1 block w-full" v-model="form.icon" required />
-            </div> -->
 
             <div class="mt-4">
                 <BreezeLabel for="profile" value="プロフィール文" />

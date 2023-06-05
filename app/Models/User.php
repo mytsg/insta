@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -44,4 +47,44 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(self::class,'follows','following_user_id','followed_user_id')
+        ->withPivot('followed_user_id');
+    }
+
+    public function isFollowing($followedUserId)
+    {
+        
+        if($this->follows->contains('id',$followedUserId)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function scopeSearchUsers($query, $search = null)
+    {
+        if(!empty($search)){
+            return $query->where('name','like',"%".$search."%")
+            ->orWhere('userName','like',"%".$search."%");
+        } else {
+            return $query;
+        }
+    }
 }

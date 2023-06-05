@@ -10,11 +10,15 @@ import { Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
-    <div class="h-screen bg-white border-r-4 border-gray-200 w-1/6">
-        <Link :active="route().current('dashboard')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">ホーム</Link>
-        <Link class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">検索</Link>
-        <Link class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">メッセージ</Link>
-        <Link class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">作成</Link>
-        <Link class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">プロフィール</Link>
+    <div class="h-full bg-white border-r-4 border-gray-200 w-1/6">
+        <Link :herf="route('posts.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">ホーム</Link>
+        <Link :href="route('users.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">検索</Link>
+        <Link :href="route('messages.index')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">メッセージ</Link>
+        <Link :href="route('posts.create')" :active="route().current('posts.create')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">作成</Link>
+        <Link :href="route('myprofile')" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">プロフィール</Link>
+        <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button" class="w-full relative py-6 hover:bg-gray-200 text-gray-500 inline-block text-center title-font text-xl rounded font-medium">
+            Log Out
+        </BreezeResponsiveNavLink>
+        
     </div>
 </template>
