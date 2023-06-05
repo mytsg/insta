@@ -12,18 +12,18 @@ const props = defineProps({
     'auth': Object,
 })
 
-const search = ref('')
+// const search = ref('')
 
-const searchUsers = () => {
-    console.log('search',search.value)
-    Inertia.get(route('users.index'),{
-        search: search.value
-    })
-}
+// const searchUsers = () => {
+//     console.log('search',search.value)
+//     Inertia.get(route('users.index'),{
+//         search: search.value
+//     })
+// }
 </script>
 
 <template>
-    <Head title="フォロー中のユーザー" />
+    <Head title="フォローされているユーザー" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

@@ -10,7 +10,7 @@ import MicromodalEx from '@/Components/MicromodalEx.vue';
 </script>
 
 <template>
-    <Head title="購買履歴 詳細画面" />
+    <Head title="" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

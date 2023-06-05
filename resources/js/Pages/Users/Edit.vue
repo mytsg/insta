@@ -32,7 +32,7 @@ const selectedFile = (e) => {
 </script>
 
 <template>
-    <Head title="購買履歴 詳細画面" />
+    <Head title="プロフィールを編集" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

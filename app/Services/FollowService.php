@@ -53,7 +53,6 @@ class FollowService
         $followerUsers = [];
         foreach($followers as $follower) {
             $followerUser = User::findOrFail($follower);
-            // $followingUsers->push($followingUser);
             array_push($followerUsers, $followerUser);
         }
 

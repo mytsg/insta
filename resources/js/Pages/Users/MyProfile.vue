@@ -44,7 +44,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="購買履歴 詳細画面" />
+    <Head title="プロフィール" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

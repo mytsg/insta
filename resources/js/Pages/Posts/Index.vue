@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Head title="購買履歴 詳細画面" />
+    <Head title="投稿一覧" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

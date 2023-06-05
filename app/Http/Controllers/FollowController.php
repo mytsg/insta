@@ -28,23 +28,11 @@ class FollowController extends Controller
 
     public function store(Request $request)
     {
-        // $authUser = User::findOrFail(Auth::id());
-        // if($authUser->isFollowing($request->userId)){   //　既にフォローしている場合の処理
-        //     $authUser->follows()->detach($request->userId); // フォロー解除
-        // } else {
-        //     $authUser->follows()->attach($request->userId);
-        // }
         return $this->followService->followUser($request->userId);
     }
 
     public function check(Request $request)
     {
-        // $authUser = User::findOrFail(Auth::id());
-        // if($authUser->isFollowing($request->userId)){
-        //     return true;
-        // } else {
-        //     return false;
-        // }
         return $this->followService->followcheck($request->userId);
     }
 
@@ -71,17 +59,6 @@ class FollowController extends Controller
 
     public function getfollowingList(Request $request)
     {
-        // $user = User::findOrFail($request->userId);
-
-        // $followings = Follow::where('following_user_id',$request->userId)
-        //             ->select('followed_user_id')
-        //             ->get();
-        
-        // $followingUsers = collect();
-        // foreach($followings as $following) {
-        //     $followingUser = User::findOrFail($following);
-        //     $followingUsers->push($followingUser);
-        // }
         $followingUsers = $this->followService->getFollowings($request->userId);
 
         \Log::debug('followingUsers',[($followingUsers)]);
@@ -94,16 +71,6 @@ class FollowController extends Controller
 
     public function getfollowerList(Request $request)
     {
-        // $followers = Follow::where('followed_user_id',$request->userId)
-        //             ->select('following_user_id')
-        //             ->get();
-        
-        // $followerUsers = [];
-        // foreach($followers as $follower) {
-        //     $followerUser = User::findOrFail($follower);
-        //     // $followingUsers->push($followingUser);
-        //     array_push($followerUsers, $followerUser);
-        // }
         $followerUsers = $this->followService->getFollowers($request->userId);
 
         \Log::debug('followingUsers', [($followerUsers)]);

@@ -13,7 +13,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Head title="購買履歴 詳細画面" />
+    <Head title="メッセージの送信先" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

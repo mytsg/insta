@@ -25,7 +25,7 @@ const searchUsers = () => {
 </script>
 
 <template>
-    <Head title="購買履歴 詳細画面" />
+    <Head title="ユーザー検索" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

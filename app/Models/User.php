@@ -62,7 +62,7 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    public function follows()   // フォローしているUserを返す
+    public function follows()
     {
         return $this->belongsToMany(self::class,'follows','following_user_id','followed_user_id')
         ->withPivot('followed_user_id');

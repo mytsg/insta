@@ -10,9 +10,26 @@ use Illuminate\Support\Facades\Auth;
 use InterventionImage;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Services\FollowService;
+use App\Services\PostService;
+use App\Services\ImageService;
+use App\Services\UserService;
 
 class PostController extends Controller
 {
+    private $followService;
+    private $userService;
+    private $postService;
+    private $imageService;
+
+    public function __construct()
+    {
+        $this->followService = new FollowService();
+        $this->userService = new UserService();
+        $this->postService = new PostService();
+        $this->imageService = new ImageService();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +44,6 @@ class PostController extends Controller
                     ->get();
 
         $authUser = User::findOrFail(Auth::id());
-
-        // ここにフォロー中のユーザーの投稿のみを表示する処理(filterを使う)
 
         return Inertia::render('Posts/Index',[
             'posts' => $allPosts,
@@ -57,20 +72,10 @@ class PostController extends Controller
         // dd($request);
 
         $userId = Auth::id();
-        // $user = User::findOrFail($userId); 
 
         $imageFile = $request->filename;
 
-        if(!is_null($imageFile) && $imageFile->isValid()){
-            $fileName = uniqid(rand().'_');
-            $extension = $imageFile->extension();
-            $fileNameToStore = $fileName.'.'.$extension;
-            $resizedImage = InterventionImage::make($imageFile)->resize(1920,1920)->encode();
-
-            // dd($fileNameToStore);
-
-            Storage::put('public/posts/'.$fileNameToStore, $resizedImage);
-        }
+        $fileNameToStore = $this->imageService->resizeImage($imageFile, 1920, 1920, 'public/posts/');
 
         $post = Post::create([
             'content' => $request->content,
@@ -79,8 +84,6 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('posts.index');
-
-        // dd($post);
     }
 
     /**
